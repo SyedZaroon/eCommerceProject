@@ -1,0 +1,19 @@
+# Node & NPM
+node_modules/
+npm-debug.log*
+
+# React / Frontend & Backend build folders
+/Frontend/node_modules
+/Frontend/dist
+/Frontend/.next
+/Backend/node_modules
+
+# Environment variables & Secrets
+.env
+.env.local
+/Backend/.env
+/Frontend/.env
+
+# OS files
+.DS_Store
+Thumbs.db
