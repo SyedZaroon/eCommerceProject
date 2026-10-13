@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from 'cookie-parser';
 import adminUserRoutes from "./routes/adminUserRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import productCollectionRoutes from "./routes/productCollectionRoutes.js";
 
 export const app = express();
 
@@ -14,4 +15,6 @@ app.use(cookieParser());
 app.use("/api/admin/users", adminUserRoutes);
 
 app.use("/api/products", productRoutes);
+
+app.use("/api/productcollection", productCollectionRoutes )
 
