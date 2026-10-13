@@ -3,7 +3,7 @@ import { createProductCollection, deleteProductCollection, getAllProductCollecti
 
 const router = express.Router()
 
-router.put("/", createProductCollection);
+router.post("/", createProductCollection);
 router.get("/", getAllProductCollection);
 router.delete("/delete/:id", deleteProductCollection);
 

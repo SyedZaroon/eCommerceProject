@@ -2,24 +2,31 @@ import productCollection from "../models/productCollectionModel.js";
 
 export const createProductCollection = async (req, res) => {
   try {
-    const { name } = req.body;
+    const collectionname = req.body.collectionname?.trim();
 
-    if (!name) {
+    if (!collectionname) {
       return res.status(400).json({ 
         success: false, 
         message: "Collection name is required." 
       });
     }
 
-    const slug = name
+    const slug = collectionname
       .toLowerCase()
       .trim()
       .replace(/[^\w\s-]/g, "")
       .replace(/[\s_-]+/g, "-")
       .replace(/^-+|-+$/g, "");
 
+    if (!slug) {
+      return res.status(400).json({
+        success: false,
+        message: "Collection name must contain letters or numbers.",
+      });
+    }
+
     const existingCollection = await productCollection.findOne({ 
-      $or: [{ name }, { slug }] 
+      $or: [{ collectionname }, { slug }] 
     });
 
     if (existingCollection) {
@@ -30,7 +37,7 @@ export const createProductCollection = async (req, res) => {
     }
 
     const newCollection = await productCollection.create({
-      name,
+      collectionname,
       slug,
     });
 
@@ -42,6 +49,19 @@ export const createProductCollection = async (req, res) => {
 
   } catch (error) {
     console.error("Error creating product collection:", error);
+    if (error.code === 11000) {
+      const duplicateField = Object.keys(error.keyPattern || {})[0];
+      if (duplicateField === "name") {
+        return res.status(500).json({
+          success: false,
+          message: 'The database has an obsolete "name_1" index. Drop that index from the productcollections collection.',
+        });
+      }
+      return res.status(409).json({
+        success: false,
+        message: "Product collection with this name already exists.",
+      });
+    }
     return res.status(500).json({ 
       success: false, 
       message: "Internal server error.", 
@@ -60,15 +80,15 @@ export const deleteProductCollection = async(req,res)=>{
         }
         return res.status(200).json({message:"collection deleted"})
     }
-    catch{
+    catch(error){
         return res.status(500).json({message:error.message})
     }
 }
 
 export const getAllProductCollection = async(req,res)=>{
     try{
-        const productCollection = await productCollection.find();
-        res.status(200).json(productCollection);
+        const productCollections = await productCollection.find();
+        res.status(200).json(productCollections);
     }
     catch (error) {
     res.status(500).json({ message: error.message });

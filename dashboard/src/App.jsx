@@ -1,8 +1,7 @@
 import "./App.css";
 import {
   createBrowserRouter,
-  RouterProvider,
-  Navigate,
+  RouterProvider, 
 } from "react-router-dom";
 import Login from "./pages/Login";
 import DashboardLayout from "./components/ui/DashboardLayout";
@@ -12,8 +11,13 @@ import AddUser from "./pages/AddUser";
 import UserList from "./pages/UserList";
 import EditProduct from "./pages/EditProduct";
 import EditUser from "./pages/EditUser";
+import AddCollection from "./pages/AddCollection";
 
 const router = createBrowserRouter([
+   {
+    path: "/",
+    element: <Login />,
+  },
   {
     path: "/login",
     element: <Login />,
@@ -29,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "addproduct",
         element: <AddProduct />,
+      },
+      {
+        path: "addcollection",
+        element: <AddCollection />,
       },
       {
         path: "productlist",

@@ -43,6 +43,10 @@ const data = {
           url: "/dashboard/addproduct",
         },
         {
+          title: "Add Collection",
+          url: "/dashboard/addcollection",
+        },
+        {
           title: "Product List",
           url: "/dashboard/productlist",
         },
