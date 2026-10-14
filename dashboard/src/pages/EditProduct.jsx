@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ProductForm from '@/components/PrductForm';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getProductById, updateProduct } from '@/services/productService';
+import { getAllCollections } from '@/services/productCollectionService';
 import { toast } from '@/components/ui/toast';
 
 const EditProduct = () => {
@@ -11,6 +12,7 @@ const EditProduct = () => {
     const [isLoadingProduct, setIsLoadingProduct] = useState(true);
     const [productImg, setProductImg] = useState("");
     const [selectedImagePreview, setSelectedImagePreview] = useState("");
+    const [collectionList, setCollectionList] = useState([]);
     const formRef = useRef(null);
     
     // Original data backend se aane wala
@@ -21,6 +23,7 @@ const EditProduct = () => {
         discountPrice: '',
         stock: '',
         sku: '',
+        collections: [],
     });
 
     // Form mein edit hone wala data
@@ -31,6 +34,7 @@ const EditProduct = () => {
         discountPrice: '',
         stock: '',
         sku: '',
+        collections: [],
     });
 
     const [imageFile, setImageFile] = useState(null);
@@ -58,6 +62,9 @@ const EditProduct = () => {
                     discountPrice: data.discountPrice ?? '',
                     stock: data.stock ?? '',
                     sku: data.sku ?? '',
+                    collections: (data.collections || []).map((collection) =>
+                        String(collection._id || collection)
+                    ),
                 };
                 setOriginalData(fetchedValues);
                 setProductData(fetchedValues);
@@ -72,9 +79,31 @@ const EditProduct = () => {
         fetchProduct();
     }, [id]);
 
+    useEffect(() => {
+        const fetchCollections = async () => {
+            try {
+                setCollectionList(await getAllCollections());
+            } catch (error) {
+                console.error('Error fetching collections:', error);
+                toast.add({
+                    type: "error",
+                    description: error.response?.data?.message || "Failed to load collections.",
+                });
+            }
+        };
+        fetchCollections();
+    }, []);
+
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        const updatedData = { ...productData, [name]: value };
+        const { name, value, type, checked } = e.target;
+        const updatedData = type === "checkbox"
+            ? {
+                ...productData,
+                collections: checked
+                    ? [...new Set([...productData.collections, value])]
+                    : productData.collections.filter((collectionId) => collectionId !== value),
+            }
+            : { ...productData, [name]: value };
         setProductData(updatedData);
 
         const isModified = Object.keys(updatedData).some(
@@ -107,7 +136,13 @@ const EditProduct = () => {
             if (imageFile) {
                 const formData = new FormData();
                 Object.entries(productData).forEach(([key, value]) => {
-                    formData.append(key, value);
+                    if (key === "collections") {
+                        value.forEach((collectionId) => {
+                            formData.append("collections[]", collectionId);
+                        });
+                    } else {
+                        formData.append(key, value);
+                    }
                 });
                 formData.append("productImg", imageFile);
                 updateData = formData;
@@ -160,6 +195,7 @@ const EditProduct = () => {
             clearForm={clearForm}
             loading={loading}
             formRef={formRef}
+            collectionList={collectionList}
         />
     );
 };

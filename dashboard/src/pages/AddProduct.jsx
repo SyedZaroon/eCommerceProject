@@ -1,11 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createProduct } from "@/services/productService";
 import { toast } from "@/components/ui/toast";
 import ProductForm from "@/components/PrductForm";
-
+import { getAllCollections } from "@/services/productCollectionService";
 
 export default function AddProduct() {
-
   const [loading, setLoading] = useState(false);
 
   const initialFormState = {
@@ -15,10 +14,12 @@ export default function AddProduct() {
     discountPrice: "",
     stock: "",
     sku: "",
+    collections: [],
   };
-  
+
   const [productData, setProductData] = useState(initialFormState);
-  
+  const [collectionList, setCollectionList] = useState([]);
+
   const [imageFile, setImageFile] = useState(null);
   const formRef = useRef(null);
 
@@ -29,10 +30,25 @@ export default function AddProduct() {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
+
+    if (type === "checkbox") {
+      const collectionId = value;
+      setProductData((prev) => {
+        return {
+          ...prev,
+          collections: checked
+            ? [...prev.collections, collectionId]
+            : prev.collections.filter((id) => id !== collectionId),
+        };
+      });
+
+      return;
+    }
+
     setProductData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -43,7 +59,6 @@ export default function AddProduct() {
   };
 
   const handleFormSubmit = async (e) => {
-    
     e.preventDefault();
     setLoading(true);
 
@@ -55,9 +70,12 @@ export default function AddProduct() {
       formData.append("discountPrice", productData.discountPrice);
       formData.append("stock", productData.stock);
       formData.append("sku", productData.sku);
-      
+      productData.collections.forEach((collectionId) => {
+        formData.append("collections[]", collectionId);
+      });
+
       if (imageFile) {
-        formData.append("productImg", imageFile); 
+        formData.append("productImg", imageFile);
       }
 
       await createProduct(formData);
@@ -68,12 +86,14 @@ export default function AddProduct() {
       });
 
       resetForm();
-
     } catch (error) {
       console.error("Error creating product:", error);
       toast.add({
         type: "error",
-        description: "Failed to create product. Please try again.",
+        description:
+          error.response?.data?.message ||
+          error.message ||
+          "Failed to create product. Please try again.",
       });
     } finally {
       setLoading(false);
@@ -83,6 +103,19 @@ export default function AddProduct() {
   const clearForm = () => {
     resetForm();
   };
+
+  useEffect(() => {
+    const collections = async () => {
+      try {
+        const data = await getAllCollections();
+        setCollectionList(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    collections();
+  }, []);
 
   return (
     <>
@@ -94,6 +127,7 @@ export default function AddProduct() {
         clearForm={clearForm}
         loading={loading}
         formRef={formRef}
+        collectionList={collectionList}
       />
     </>
   );

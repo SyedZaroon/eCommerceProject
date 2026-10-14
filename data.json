@@ -1,0 +1,402 @@
+[
+  {
+    "title": "iPhone 14",
+    "description": "Standard Apple iPhone 14 with dual camera system and A15 Bionic chip.",
+    "basePrice": 799,
+    "discountPrice": 749,
+    "stock": 50,
+    "sku": "IPH14-001",
+    "productImg": "https://images.unsplash.com/photo-1678685888221-cda773a3dcdb"
+  },
+  {
+    "title": "iPhone 15",
+    "description": "Latest Apple iPhone 15 featuring Dynamic Island and USB-C port.",
+    "basePrice": 899,
+    "discountPrice": 849,
+    "stock": 65,
+    "sku": "IPH15-003",
+    "productImg": "https://images.unsplash.com/photo-1695048133142-1a20484d2569"
+  },
+  {
+    "title": "iPhone 15 Pro Max",
+    "description": "Ultimate flagship iPhone with titanium design and 5x telephoto zoom.",
+    "basePrice": 1199,
+    "discountPrice": 1149,
+    "stock": 30,
+    "sku": "IPH15PM-004",
+    "productImg": "https://images.unsplash.com/photo-1678685888221-cda773a3dcdb"
+  },
+  {
+    "title": "iPhone 13",
+    "description": "Reliable and powerful iPhone 13 with cinematic video mode.",
+    "basePrice": 699,
+    "discountPrice": 599,
+    "stock": 80,
+    "sku": "IPH13-005",
+    "productImg": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab"
+  },
+  {
+    "title": "Google Pixel 8",
+    "description": "AI-powered smartphone with advanced Google camera features.",
+    "basePrice": 699,
+    "discountPrice": 649,
+    "stock": 45,
+    "sku": "GPX8-001",
+    "productImg": "https://images.unsplash.com/photo-1598327105666-5b89351aff97"
+  },
+  {
+    "title": "OnePlus 12",
+    "description": "Fast and smooth flagship performance with Hasselblad camera for mobile.",
+    "basePrice": 799,
+    "discountPrice": 749,
+    "stock": 55,
+    "sku": "OP12-002",
+    "productImg": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0"
+  },
+  {
+    "title": "Xiaomi 14",
+    "description": "Compact flagship smartphone with Leica optics and high-res display.",
+    "basePrice": 750,
+    "discountPrice": 699,
+    "stock": 60,
+    "sku": "XM14-003",
+    "productImg": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"
+  },
+  {
+    "title": "Nothing Phone (2)",
+    "description": "Unique transparent design with interactive Glyph interface.",
+    "basePrice": 650,
+    "discountPrice": 599,
+    "stock": 40,
+    "sku": "NP2-004",
+    "productImg": "https://images.unsplash.com/photo-1533228876829-65c94e7b5025"
+  },
+  {
+    "title": "Vivo X100 Pro",
+    "description": "Professional mobile photography smartphone with Zeiss telephoto lens.",
+    "basePrice": 899,
+    "discountPrice": 849,
+    "stock": 25,
+    "sku": "VX100-005",
+    "productImg": "https://images.unsplash.com/photo-1580910051074-3eb694886505"
+  },
+  {
+    "title": "Samsung Galaxy S24",
+    "description": "Galaxy AI integrated smartphone with stunning AMOLED display.",
+    "basePrice": 799,
+    "discountPrice": 749,
+    "stock": 70,
+    "sku": "SGS24-001",
+    "productImg": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf"
+  },
+  {
+    "title": "Samsung Galaxy S23 Ultra",
+    "description": "Powerful flagship with built-in S-Pen and 200MP camera system.",
+    "basePrice": 1199,
+    "discountPrice": 1049,
+    "stock": 35,
+    "sku": "SGS23U-002",
+    "productImg": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0"
+  },
+  {
+    "title": "Samsung Galaxy A55",
+    "description": "Premium mid-range phone with metal frame and excellent battery life.",
+    "basePrice": 450,
+    "discountPrice": 399,
+    "stock": 90,
+    "sku": "SGA55-003",
+    "productImg": "https://images.unsplash.com/photo-1546868871-7041f2a55e12"
+  },
+  {
+    "title": "Samsung Galaxy Z Flip 5",
+    "description": "Pocket-sized foldable smartphone with large flex window display.",
+    "basePrice": 999,
+    "discountPrice": 899,
+    "stock": 30,
+    "sku": "SGZF5-004",
+    "productImg": "https://images.unsplash.com/photo-1556656793-08538906a9f8"
+  },
+  {
+    "title": "Samsung Galaxy Z Fold 5",
+    "description": "Tablet-sized multitasking powerhouse that folds right into your pocket.",
+    "basePrice": 1799,
+    "discountPrice": 1649,
+    "stock": 15,
+    "sku": "SGZF5L-005",
+    "productImg": "https://images.unsplash.com/photo-1533228876829-65c94e7b5025"
+  },
+
+  {
+    "title": "Lenovo Tab P12 Pro",
+    "description": "Large 12.6 inch AMOLED display tablet with JBL quad speakers.",
+    "basePrice": 649,
+    "discountPrice": 599,
+    "stock": 40,
+    "sku": "LTVP12-001",
+    "productImg": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0"
+  },
+  {
+    "title": "Xiaomi Pad 6",
+    "description": "High refresh rate display tablet built for productivity and media.",
+    "basePrice": 399,
+    "discountPrice": 359,
+    "stock": 60,
+    "sku": "XMP6-002",
+    "productImg": "https://images.unsplash.com/photo-1561154464-82e9adf32764"
+  },
+  {
+    "title": "OnePlus Pad",
+    "description": "Smooth reading and gaming tablet with unique 7:5 aspect ratio screen.",
+    "basePrice": 479,
+    "discountPrice": 429,
+    "stock": 45,
+    "sku": "OPPAD-003",
+    "productImg": "https://images.unsplash.com/photo-1589739700289-4b6e492233f2"
+  },
+  {
+    "title": "Huawei MatePad Pro",
+    "description": "Ultra-slim creativity tablet supporting M-Pencil stylus workflow.",
+    "basePrice": 699,
+    "discountPrice": 649,
+    "stock": 25,
+    "sku": "HWMP-004",
+    "productImg": "https://images.unsplash.com/photo-1542751371-adc38448a05e"
+  },
+  {
+    "title": "Amazon Fire Max 11",
+    "description": "Vibrant 11 display entertainment tablet with long battery backup.",
+    "basePrice": 229,
+    "discountPrice": 189,
+    "stock": 85,
+    "sku": "AFM11-005",
+    "productImg": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0"
+  },
+
+  {
+    "title": "iPad Pro 12.9 (M2)",
+    "description": "Liquid Retina XDR display with desktop-class M2 performance.",
+    "basePrice": 1099,
+    "discountPrice": 999,
+    "stock": 25,
+    "sku": "IPDP12-001",
+    "productImg": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0"
+  },
+  {
+    "title": "iPad Air 11 (M2)",
+    "description": "Supercharged by the M2 chip in a thin and lightweight design.",
+    "basePrice": 599,
+    "discountPrice": 569,
+    "stock": 50,
+    "sku": "IPDA11-002",
+    "productImg": "https://images.unsplash.com/photo-1561154464-82e9adf32764"
+  },
+  {
+    "title": "iPad 10th Gen",
+    "description": "Colorful all-screen design iPad for everyday tasks and learning.",
+    "basePrice": 449,
+    "discountPrice": 399,
+    "stock": 75,
+    "sku": "IPD10-003",
+    "productImg": "https://images.unsplash.com/photo-1542751371-adc38448a05e"
+  },
+  {
+    "title": "iPad mini 6",
+    "description": "Maximum capability fits right in the palm of your hand.",
+    "basePrice": 499,
+    "discountPrice": 459,
+    "stock": 40,
+    "sku": "IPDM6-004",
+    "productImg": "https://images.unsplash.com/photo-1589739700289-4b6e492233f2"
+  },
+  {
+    "title": "iPad Pro 11",
+    "description": "Ultra-portable pro tablet with ProMotion technology and OLED screen.",
+    "basePrice": 899,
+    "discountPrice": 849,
+    "stock": 30,
+    "sku": "IPDP11-005",
+    "productImg": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0"
+  },
+  {
+    "title": "Galaxy Tab S9 Ultra",
+    "description": "Massive 14.6 dynamic AMOLED screen with IP68 water resistance.",
+    "basePrice": 1199,
+    "discountPrice": 1099,
+    "stock": 20,
+    "sku": "GTS9U-001",
+    "productImg": "https://images.unsplash.com/photo-1561154464-82e9adf32764"
+  },
+  {
+    "title": "Galaxy Tab S9+",
+    "description": "Powerful Android tablet designed for immersive multimedia and work.",
+    "basePrice": 999,
+    "discountPrice": 899,
+    "stock": 35,
+    "sku": "GTS9P-002",
+    "productImg": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0"
+  },
+  {
+    "title": "Galaxy Tab S9 FE",
+    "description": "Fan Edition tablet with S-Pen included and reliable everyday performance.",
+    "basePrice": 449,
+    "discountPrice": 399,
+    "stock": 65,
+    "sku": "GTS9FE-003",
+    "productImg": "https://images.unsplash.com/photo-1589739700289-4b6e492233f2"
+  },
+  {
+    "title": "Galaxy Tab A9+",
+    "description": "Family-friendly entertainment tablet with vibrant sound and smooth display.",
+    "basePrice": 219,
+    "discountPrice": 189,
+    "stock": 90,
+    "sku": "GTA9P-004",
+    "productImg": "https://images.unsplash.com/photo-1542751371-adc38448a05e"
+  },
+  {
+    "title": "Galaxy Tab S8",
+    "description": "High performance tablet with ultra-wide front camera and Armor Aluminum body.",
+    "basePrice": 699,
+    "discountPrice": 599,
+    "stock": 30,
+    "sku": "GTS8-005",
+    "productImg": "https://images.unsplash.com/photo-1561154464-82e9adf32764"
+  },
+
+  {
+    "title": "HP Spectre x360",
+    "description": "Convertible 2-in-1 laptop with stunning OLED display and long battery life.",
+    "basePrice": 1299,
+    "discountPrice": 1199,
+    "stock": 25,
+    "sku": "HPSX-001",
+    "productImg": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+  },
+  {
+    "title": "Lenovo ThinkPad X1 Carbon",
+    "description": "Legendary business laptop with durable chassis and ultimate keyboard comfort.",
+    "basePrice": 1399,
+    "discountPrice": 1279,
+    "stock": 30,
+    "sku": "LVTX1-002",
+    "productImg": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed"
+  },
+  {
+    "title": "Asus ROG Zephyrus G14",
+    "description": "Compact gaming powerhouse with high refresh display and Ryzen processor.",
+    "basePrice": 1499,
+    "discountPrice": 1399,
+    "stock": 20,
+    "sku": "ASROG-003",
+    "productImg": "https://images.unsplash.com/photo-1603302576837-37561b2e2302"
+  },
+  {
+    "title": "Acer Swift Go 14",
+    "description": "Thin and light AI-ready laptop for creators and students on the go.",
+    "basePrice": 799,
+    "discountPrice": 729,
+    "stock": 55,
+    "sku": "ACSG14-004",
+    "productImg": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef"
+  },
+  {
+    "title": "Microsoft Surface Laptop 5",
+    "description": "Sleek touchscreen laptop with fast multitasking and elegant finish.",
+    "basePrice": 999,
+    "discountPrice": 899,
+    "stock": 40,
+    "sku": "MSL5-005",
+    "productImg": "https://images.unsplash.com/photo-1531297484001-80022131f5a1"
+  },
+
+  {
+    "title": "Dell XPS 15",
+    "description": "Premium creator laptop with InfinityEdge 4K display and dedicated graphics.",
+    "basePrice": 1599,
+    "discountPrice": 1449,
+    "stock": 20,
+    "sku": "DLXPS15-001",
+    "productImg": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45"
+  },
+  {
+    "title": "Dell Inspiron 14",
+    "description": "Reliable everyday laptop with fast charging and dependable performance.",
+    "basePrice": 629,
+    "discountPrice": 579,
+    "stock": 60,
+    "sku": "DLINS14-002",
+    "productImg": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed"
+  },
+  {
+    "title": "Dell Latitude 7440",
+    "description": "Secure and intelligent enterprise business laptop built for professionals.",
+    "basePrice": 1299,
+    "discountPrice": 1199,
+    "stock": 35,
+    "sku": "DLLAT-003",
+    "productImg": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+  },
+  {
+    "title": "Dell Alienware m16",
+    "description": "High-end gaming laptop featuring advanced cooling and high FPS capability.",
+    "basePrice": 1899,
+    "discountPrice": 1749,
+    "stock": 15,
+    "sku": "DLAW16-004",
+    "productImg": "https://images.unsplash.com/photo-1603302576837-37561b2e2302"
+  },
+  {
+    "title": "Dell Precision 3580",
+    "description": "Workstation laptop optimized for CAD, engineering, and heavy rendering.",
+    "basePrice": 1499,
+    "discountPrice": 1399,
+    "stock": 25,
+    "sku": "DLPR35-005",
+    "productImg": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45"
+  },
+  {
+    "title": "MacBook Pro 16 (M3 Max)",
+    "description": "The most advanced Mac laptop designed for extreme workflows and rendering.",
+    "basePrice": 2499,
+    "discountPrice": 2349,
+    "stock": 15,
+    "sku": "MBP16M3-001",
+    "productImg": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+  },
+  {
+    "title": "MacBook Air 15 (M2)",
+    "description": "Immersive 15-inch Liquid Retina display in an impossibly thin fanless design.",
+    "basePrice": 1299,
+    "discountPrice": 1199,
+    "stock": 45,
+    "sku": "MBA15M2-002",
+    "productImg": "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9"
+  },
+  {
+    "title": "MacBook Pro 14 (M3 Pro)",
+    "description": "Pro performance, brilliant display, and exceptional battery life in 14 inches.",
+    "basePrice": 1999,
+    "discountPrice": 1849,
+    "stock": 30,
+    "sku": "MBP14M3-003",
+    "productImg": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+  },
+  {
+    "title": "Mac mini (M2)",
+    "description": "Packed with punchy Apple M2 performance and versatile connection ports.",
+    "basePrice": 599,
+    "discountPrice": 549,
+    "stock": 50,
+    "sku": "MACMINI-004",
+    "productImg": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf"
+  },
+  {
+    "title": "iMac 24 (M3)",
+    "description": "Stunning all-in-one desktop featuring a 4.5K Retina display in vibrant colors.",
+    "basePrice": 1299,
+    "discountPrice": 1199,
+    "stock": 25,
+    "sku": "IMAC24-005",
+    "productImg": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf"
+  }
+]

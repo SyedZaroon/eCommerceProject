@@ -33,6 +33,12 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    collections: [
+  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "ProductCollection",
+  },
+]
   },
   { timestamps: true }
 );

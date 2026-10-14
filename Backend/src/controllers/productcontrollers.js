@@ -1,10 +1,22 @@
 import Product from "../models/productModel.js";
 import imagekit from "../utils/imagekit.js";
 
+const getCollectionIds = (body) => {
+  const value = body["collections[]"] ?? body.collections;
+  if (value === undefined || value === "") {
+    return [];
+  }
+
+  return (Array.isArray(value) ? value : [value])
+    .flatMap((collection) => String(collection).split(","))
+    .filter(Boolean);
+};
+
 // Create a new product
 export const createProduct = async (req, res) => {
   try {
-    const { title, description, basePrice, discountPrice, stock, sku} = req.body;
+    const { title, description, basePrice, discountPrice, stock, sku } = req.body;
+    const collections = getCollectionIds(req.body);
 
     // Check if the SKU already exists
     const existingProduct = await Product.findOne({ sku });
@@ -14,6 +26,10 @@ export const createProduct = async (req, res) => {
 
     if (!req.file) {
       return res.status(400).json({ message: "Product image is required" });
+    }
+
+    if (Number(discountPrice) >= Number(basePrice)) {
+      return res.status(400).json({ message: "Base price must be greater than discount price" });
     }
 
     const uploadResponse = await imagekit.upload({
@@ -30,6 +46,7 @@ export const createProduct = async (req, res) => {
       stock,
       sku,
       productImg: uploadResponse.url,
+      collections,
     });
 
     const savedProduct = await newProduct.save();
@@ -70,6 +87,36 @@ export const updateProduct = async (req, res) => {
       if (req.body[field] !== undefined) {
         updates[field] = req.body[field];
       }
+    }
+
+        // Price validation
+    if (
+      req.body.basePrice !== undefined ||
+      req.body.discountPrice !== undefined
+    ) {
+      const existingProduct = await Product.findById(req.params.id);
+
+      if (!existingProduct) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+
+      const basePrice = Number(
+        req.body.basePrice ?? existingProduct.basePrice
+      );
+
+      const discountPrice = Number(
+        req.body.discountPrice ?? existingProduct.discountPrice
+      );
+
+      if (discountPrice >= basePrice) {
+        return res.status(400).json({
+          message: "Base price must be greater than discount price",
+        });
+      }
+    }
+
+    if (req.body["collections[]"] !== undefined || req.body.collections !== undefined) {
+      updates.collections = getCollectionIds(req.body);
     }
 
     if (req.file) {
