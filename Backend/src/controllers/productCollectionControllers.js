@@ -1,13 +1,14 @@
-import productCollection from "../models/productCollectionModel.js"; 
+import productCollection from "../models/productCollectionModel.js";
+import Product from "../models/productModel.js";
 
 export const createProductCollection = async (req, res) => {
   try {
     const collectionname = req.body.collectionname?.trim();
 
     if (!collectionname) {
-      return res.status(400).json({ 
-        success: false, 
-        message: "Collection name is required." 
+      return res.status(400).json({
+        success: false,
+        message: "Collection name is required.",
       });
     }
 
@@ -25,14 +26,14 @@ export const createProductCollection = async (req, res) => {
       });
     }
 
-    const existingCollection = await productCollection.findOne({ 
-      $or: [{ collectionname }, { slug }] 
+    const existingCollection = await productCollection.findOne({
+      $or: [{ collectionname }, { slug }],
     });
 
     if (existingCollection) {
-      return res.status(400).json({ 
-        success: false, 
-        message: "Product collection with this name already exists." 
+      return res.status(400).json({
+        success: false,
+        message: "Product collection with this name already exists.",
       });
     }
 
@@ -46,7 +47,6 @@ export const createProductCollection = async (req, res) => {
       message: "Product collection created successfully.",
       data: newCollection,
     });
-
   } catch (error) {
     console.error("Error creating product collection:", error);
     if (error.code === 11000) {
@@ -54,7 +54,8 @@ export const createProductCollection = async (req, res) => {
       if (duplicateField === "name") {
         return res.status(500).json({
           success: false,
-          message: 'The database has an obsolete "name_1" index. Drop that index from the productcollections collection.',
+          message:
+            'The database has an obsolete "name_1" index. Drop that index from the productcollections collection.',
         });
       }
       return res.status(409).json({
@@ -62,35 +63,49 @@ export const createProductCollection = async (req, res) => {
         message: "Product collection with this name already exists.",
       });
     }
-    return res.status(500).json({ 
-      success: false, 
-      message: "Internal server error.", 
-      error: error.message 
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error.",
+      error: error.message,
     });
   }
 };
 
-export const deleteProductCollection = async(req,res)=>{
-    try{
+export const deleteProductCollection = async (req, res) => {
+  try {
+    const deleteCollection = await productCollection.findByIdAndDelete(
+      req.params.id,
+    );
 
-        const deleteCollection = await productCollection.findByIdAndDelete(req.params.id);
-        
-        if(!deleteCollection){
-            return res.status(404).json({success:false, message:"collection not found"})
+    if (!deleteCollection) {
+      return res
+        .status(404)
+        .json({ success: false, message: "collection not found" });
+    }
+    return res.status(200).json({ message: "collection deleted" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const getAllProductCollection = async (req, res) => {
+  try {
+    const productCollections = await productCollection.find().lean();
+
+    const collectionWithCount = await Promise.all(
+      productCollections.map( async (collection)=>{
+        const productCount = await Product.countDocuments({
+          collections: collection._id,
+        })
+        return{
+          ...collection,
+          productCount
         }
-        return res.status(200).json({message:"collection deleted"})
-    }
-    catch(error){
-        return res.status(500).json({message:error.message})
-    }
-}
+      })
+    )
 
-export const getAllProductCollection = async(req,res)=>{
-    try{
-        const productCollections = await productCollection.find();
-        res.status(200).json(productCollections);
-    }
-    catch (error) {
+    res.status(200).json(collectionWithCount);
+  } catch (error) {
     res.status(500).json({ message: error.message });
   }
-}
+};

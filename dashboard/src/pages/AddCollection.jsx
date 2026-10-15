@@ -176,7 +176,7 @@ export default function AddCollection() {
                       <div className="font-semibold">{item.collectionname}</div>
                     </TableCell>
                     <TableCell className="font-medium">
-                      <div className="font-semibold">5</div>
+                      <div className="font-semibold">{item.productCount}</div>
                     </TableCell>
 
                     <TableCell className="text-right">
