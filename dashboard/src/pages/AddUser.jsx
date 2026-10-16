@@ -12,7 +12,7 @@ export default function AddUser() {
     name: "",
     email: "",
     password: "",
-    role: "",
+    role: "Customer",
   });
 
   const handleinputChange = (e) => {
@@ -25,13 +25,17 @@ export default function AddUser() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const payload = {
+      ...formData,
+      role: [formData.role], 
+    };
     try {
-      await createUser(formData);
+      await createUser(payload);
       setFormData({
         name: "",
         email: "",
         password: "",
-        role: "",
+        role: "Customer",
       });
       toast.add({
         type: "success",

@@ -8,7 +8,6 @@ import {
 import { Input } from "@base-ui/react";
 import { Outlet } from "react-router-dom";
 import { Field } from "./field";
-import { Toaster } from "@/components/ui/toast"
 
 export default function DashboardLayout() {
   return (
@@ -23,7 +22,6 @@ export default function DashboardLayout() {
           </div>
         </header>
         <main className="flex min-w-0 flex-1 flex-col gap-4 p-4 pt-0">
-        <Toaster />
           <Outlet />
         </main>
       </SidebarInset>

@@ -12,6 +12,7 @@ import UserList from "./pages/UserList";
 import EditProduct from "./pages/EditProduct";
 import EditUser from "./pages/EditUser";
 import AddCollection from "./pages/AddCollection";
+import { Toaster } from "./components/ui/toast";
 
 const router = createBrowserRouter([
    {
@@ -63,7 +64,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Toaster>
+      <RouterProvider router={router} />
+    </Toaster>
+  );
 }
 
 export default App;

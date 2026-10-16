@@ -18,6 +18,9 @@ import { Input } from "@/components/ui/input"
 
 export function LoginForm({
   className,
+  userData,
+  onInputChange,
+  onSubmit,
   ...props
 }) {
   return (
@@ -30,7 +33,7 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={onSubmit}>
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
@@ -39,13 +42,23 @@ export function LoginForm({
                   type="email"
                   placeholder="m@example.com"
                   required
+                  onChange = {onInputChange}
+                  name = "email"
+                  value = { userData.email}
+
                 />
               </Field>
               <Field>
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Password</FieldLabel>
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                name = "password"
+                value = { userData.password} 
+                onChange = {onInputChange} 
+                id="password" 
+                type="password" 
+                required />
               </Field>
               <Field>
                 <Button type="submit">Login</Button>

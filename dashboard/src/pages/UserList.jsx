@@ -33,7 +33,6 @@ import { toast } from "@/components/ui/toast"
 
 
 export default function UserList() {
-  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -42,7 +41,6 @@ export default function UserList() {
       try {
         const data = await getAllUsers();
         setUsers(data);
-        console.log("Fetched users:", data);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -194,13 +192,7 @@ const toggleActiveStatus = async (userId, currentStatus) => {
                       <DropdownMenuContent align="end">
                         <DropdownMenuGroup>
                           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                          <DropdownMenuItem
-                            onClick={() =>
-                              navigate(`/dashboard/edituser/${user._id}`)
-                            }
-                          >
-                            View Profile
-                          </DropdownMenuItem>
+  
                           <DropdownMenuItem
                             onClick={() => toggleActiveStatus(user._id, user.status)}
                           >
