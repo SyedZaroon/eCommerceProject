@@ -1,8 +1,11 @@
+
 import "./App.css";
 import {
   createBrowserRouter,
-  RouterProvider, 
+  RouterProvider,
+  Navigate,
 } from "react-router-dom";
+
 import Login from "./pages/Login";
 import DashboardLayout from "./components/ui/DashboardLayout";
 import AddProduct from "./pages/AddProduct";
@@ -14,50 +17,59 @@ import EditUser from "./pages/EditUser";
 import AddCollection from "./pages/AddCollection";
 import { Toaster } from "./components/ui/toast";
 
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./lib/ProtectedRoute";
+
+
 const router = createBrowserRouter([
-   {
+  {
     path: "/",
-    element: <Login />,
+    element: <Navigate to="/dashboard" replace />,
   },
   {
     path: "/login",
     element: <Login />,
   },
   {
-    path: "/dashboard",
-    element: <DashboardLayout />,
+    element: <ProtectedRoute />,
     children: [
       {
-        index: true,
+        path: "/dashboard",
         element: <DashboardLayout />,
-      },
-      {
-        path: "addproduct",
-        element: <AddProduct />,
-      },
-      {
-        path: "addcollection",
-        element: <AddCollection />,
-      },
-      {
-        path: "productlist",
-        element: <ProductList />,
-      },
-      {
-        path: "editproduct/:id",
-        element: <EditProduct />,
-      },
-      {
-        path: "adduser",
-        element: <AddUser />,
-      },
-      {
-        path: "userlist",
-        element: <UserList />,
-      },
-      {
-        path: "edituser/:id",
-        element: <EditUser />,
+        children: [
+          {
+            index: true,
+            element: <div>Welcome to Dashboard</div>,
+          },
+          {
+            path: "addproduct",
+            element: <AddProduct />,
+          },
+          {
+            path: "addcollection",
+            element: <AddCollection />,
+          },
+          {
+            path: "productlist",
+            element: <ProductList />,
+          },
+          {
+            path: "editproduct/:id",
+            element: <EditProduct />,
+          },
+          {
+            path: "adduser",
+            element: <AddUser />,
+          },
+          {
+            path: "userlist",
+            element: <UserList />,
+          },
+          {
+            path: "edituser/:id",
+            element: <EditUser />,
+          },
+        ],
       },
     ],
   },
@@ -65,9 +77,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <Toaster>
-      <RouterProvider router={router} />
-    </Toaster>
+    <AuthProvider>
+      <Toaster>
+        <RouterProvider router={router} />
+      </Toaster>
+    </AuthProvider>
   );
 }
 

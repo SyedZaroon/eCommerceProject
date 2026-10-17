@@ -13,6 +13,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { GalleryVerticalEndIcon, BotIcon, ShoppingBasket, User } from "lucide-react"
+import { useAuth } from "@/context/AuthContext"
 
 // This is sample data.
 const data = {
@@ -74,6 +75,8 @@ const data = {
 export function AppSidebar({
   ...props
 }) {
+  const { user } = useAuth()
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -83,7 +86,7 @@ export function AppSidebar({
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

@@ -17,7 +17,7 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-// app.use("/api/auth", customerAuthRoutes);
+
 app.use("/api/admin/users", adminUserRoutes);
 
 app.use("/api/products", productRoutes);

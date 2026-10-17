@@ -42,17 +42,13 @@ export const verifyToken = async (req, res, next) => {
 // 3. Centralized Permission Middleware (Method 2)
 export const authorizePermission = (resource, action) => {
   return (req, res, next) => {
-    const userRole = req.user.role;
+    const userRole = req.currentUser?.role;
     const allowedRoles = PERMISSIONS[resource]?.[action];
 
-    const hasPermission = Array.isArray(userRole)
-      ? userRole.some((role) => allowedRoles?.includes(role))
-      : allowedRoles?.includes(userRole);
-
-    if (!hasPermission) {
+    if (!userRole || !allowedRoles?.includes(userRole)) {
       return res.status(403).json({
         success: false,
-        message: `Access forbidden: Role '${userRole}' is not authorized to perform '${action}' on '${resource}'.`,
+        message: "You are not authorized to perform this action.",
       });
     }
 

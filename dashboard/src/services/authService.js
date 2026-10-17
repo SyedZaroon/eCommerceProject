@@ -5,11 +5,19 @@ export const loginUser = async (userData) => {
     const res = await api.post("/login", userData);
     return res.data;
   } catch (error) {
-    console.log("Login API Error:", error.response?.data);
-    console.log("Status Code:", error.response?.status);
-
     throw new Error(
       error.response?.data?.message || "Login failed"
+    );
+  }
+};
+
+export const logoutUser = async () => {
+  try {
+    const res = await api.post("/logout");
+    return res.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || "Logout failed"
     );
   }
 };

@@ -1,15 +1,17 @@
-import { LoginForm } from '@/components/login-form'
-import { toast } from '@/components/ui/toast';
-import { loginUser } from '@/services/authService';
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'; // 1. useNavigate import karein
+import { LoginForm } from "@/components/login-form";
+import { toast } from "@/components/ui/toast";
+import { loginUser } from "@/services/authService";
+import { useAuth } from "@/context/AuthContext";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // 1. useNavigate import karein
 
 const Login = () => {
   const navigate = useNavigate();
+  const { user, setUser, loading: authLoading } = useAuth();
 
   const [userData, setUserData] = useState({
-    password: "", 
-    email: ""
+    password: "",
+    email: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -33,9 +35,11 @@ const Login = () => {
       const response = await loginUser(userData);
 
       if (response && response.user) {
-        localStorage.setItem("user", JSON.stringify(response.user));
+        setUser(response.user);
+        navigate("/dashboard");
+      } else {
+        throw new Error("Login response did not include user information.");
       }
-      navigate("/dashboard");
     } catch (error) {
       console.log("Toast Error Message:", error.message);
       toast.add({
@@ -47,6 +51,16 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    if (!authLoading && user?.status === "Active") {
+      navigate("/dashboard", { replace: true });
+    }
+  }, [user, authLoading, navigate]);
+
+  if (authLoading) {
+    return <div className="p-6">Checking authentication...</div>;
+  }
+
   return (
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
       <div className="w-full max-w-sm">
@@ -54,8 +68,8 @@ const Login = () => {
           userData={userData}
           onInputChange={handleinputChange}
           onSubmit={handleSubmit}
-          loading={loading} 
-          errorMsg={errorMsg} 
+          loading={loading}
+          errorMsg={errorMsg}
         />
       </div>
     </div>

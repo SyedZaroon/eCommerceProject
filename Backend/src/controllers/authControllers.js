@@ -17,24 +17,22 @@ export const loginUser = async (req, res) => {
     }
 
     if (user.status !== "Active") {
-  return res.status(403).json({
-    message: "Your account is deactivated.",
-  });
-}
+      return res.status(403).json({
+        message: "Your account is deactivated.",
+      });
+    }
 
     const token = jwt.sign(
-      { userId: user._id, 
-        role: user.role 
-    },
+      { userId: user._id, role: user.role },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" } 
+      { expiresIn: "1d" },
     );
 
     res.cookie("token", token, {
-      httpOnly: true, 
-      secure: process.env.NODE_ENV === "production", 
-      sameSite: "strict", 
-      maxAge: 24 * 60 * 60 * 1000, 
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 24 * 60 * 60 * 1000,
     });
 
     const userResponse = user.toObject();
@@ -55,12 +53,34 @@ export const logoutUser = async (req, res) => {
       sameSite: "strict",
     });
 
-    return res.status(200).json({ 
-      success: true, 
-      message: "Logout successful" 
+    return res.status(200).json({
+      success: true,
+      message: "Logout successful",
     });
   } catch (error) {
     console.error("Error logging out:", error);
     return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const alreadylogedin = async (req, res) => {
+  try {
+    const user = await Admin.findById(req.user.userId).select("-password");
+
+    if (!user || user.status !== "Active") {
+      return res.status(401).json({
+        success: false,
+        message: "User is not authorized",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
   }
 };

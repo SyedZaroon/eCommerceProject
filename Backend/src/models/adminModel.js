@@ -29,7 +29,7 @@ const adminSchema = new mongoose.Schema(
           enum: ["Admin", "Manager", "Customer"],
         },
       ],
-      default: ["Customer"],
+      default: "Customer",
     },
 
     status: {
